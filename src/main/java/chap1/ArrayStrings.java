@@ -1,5 +1,7 @@
 package chap1;
 
+import java.util.*;
+
 public class ArrayStrings {
     public boolean isAllUniqueChars(String str) {
 
@@ -15,9 +17,10 @@ public class ArrayStrings {
             return isAllUniqueChars(str.substring(1, str.length()));
         }
     }
-    public String reverse(String str){
 
-        if(str.length() == 1){
+    public String reverse(String str) {
+
+        if (str.length() == 1) {
             return str;
         }
         if (str.length() == 2) {
@@ -25,13 +28,14 @@ public class ArrayStrings {
         }
         return str.substring(str.length() - 1, str.length()) + reverse(str.substring(0, str.length() - 1));
     }
-    public String removeDuplicates(String str){
 
-        if(str.length() == 1){
+    public String removeDuplicates(String str) {
+
+        if (str.length() == 1) {
             return str;
         }
         if (str.length() == 2) {
-            if(str.substring(0, 1).equalsIgnoreCase(str.substring(1, 2))){
+            if (str.substring(0, 1).equalsIgnoreCase(str.substring(1, 2))) {
                 return str.substring(0, 1);
             } else {
                 return str;
@@ -43,18 +47,94 @@ public class ArrayStrings {
             return str.substring(0, 1) + removeDuplicates(str.substring(1, str.length()));
         }
     }
-    public boolean isAnagram(String str1, String str2){
 
-        if(str1.length() == 1 && str2.length() == 1){
-            if(str1.equalsIgnoreCase(str2)) {
-                return true;
-            }
-        }
-        if (str1.length() == 2 && str2.length() == 2) {
-            if(str1.equalsIgnoreCase(str2) || str1.equalsIgnoreCase(str2.substring(1, 2) + str2.substring(0, 1))){
-                return true;
-            }
-        }
-        return false;
+    public boolean isAnagram(String str1, String str2) {
+
+        char[] arr1 = str1.toCharArray();
+        char[] arr2 = str2.toCharArray();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        return Arrays.equals(arr1, arr2);
     }
+
+    public void rotateBy90(char[][] arr) {
+
+        for (int r = 0; r < arr.length/2; r++) {
+            for (int c = 0; c < arr[r].length; c++) {
+
+                char t1 = arr[r][c];
+                arr[r][c] = arr[arr.length-1-c][r];
+                char t2 = arr[c][arr.length-1-r];
+                arr[c][arr.length-1-r] = t1;
+                char t3 = arr[arr.length-1-r][arr.length-1-c];
+                arr[arr.length-1-r][arr.length-1-c] = t2;
+                arr[c][r] = t3;
+
+                showArray(arr);
+            }
+        }
+    }
+
+    private void swap(char[][] arr, int r1, int c1, int r2, int c2) {
+        char temp = arr[r1][c1];
+        arr[r1][c1] = arr[r2][c2];
+        arr[r2][c2] = temp;
+
+        showArray(arr);
+    }
+
+    public void showArray(char[][] arr) {
+        System.out.println("{");
+        for (int row = 0; row < arr.length; row++) {
+            System.out.print("{");
+            for (int col = 0; col < arr[0].length; col++) {
+                System.out.print(arr[row][col]);
+                System.out.print(" ");
+            }
+            System.out.print("}");
+            System.out.println(" ");
+        }
+        System.out.println("}");
+    }
+    public String getFirstDuplicate(String str){
+        // hgfedcbaha
+        char[]arr = str.toCharArray();
+        Set<Character> s = new HashSet<Character>();
+        for(int i = 0; i < arr.length; i++) {
+
+            boolean isuniq = s.add(arr[i]);
+            if(!isuniq){
+                return arr[i] + "";
+            }
+        }
+        return "";
+    }
+    public String[] getWordsSortedByCount(String str){
+
+        String[] words = str.split(" ");
+
+        Map<String, Integer> countmap = new HashMap<String, Integer>();
+
+        for(String w: words){
+
+            if(countmap.containsKey(w)){
+                countmap.put(w, countmap.get(w).intValue()+1);
+            } else {
+                countmap.put(w, 1);
+            }
+        }
+        String[] cntwords = new String[countmap.size()];
+        int c = 0;
+        for(String k: countmap.keySet()){
+            cntwords[c++] = countmap.get(k)+k;
+        }
+        Arrays.sort(cntwords);
+        return cntwords;
+    }
+    public void showArray(String[]arr){
+        for(String s: arr){
+            System.out.println(s);
+        }
+    }
+
 }
