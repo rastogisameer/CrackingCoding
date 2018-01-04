@@ -59,16 +59,19 @@ public class ArrayStrings {
 
     public void rotateBy90(char[][] arr) {
 
-        for (int r = 0; r < arr.length/2; r++) {
-            for (int c = 0; c < arr[r].length; c++) {
+        for (int r = 0; r < arr.length/2; r++) { //0,1
+            for (int c = r; c < arr[r].length-1-r; c++) {// 0,1,2,3 .. 1,2
 
-                char t1 = arr[r][c];
-                arr[r][c] = arr[arr.length-1-c][r];
-                char t2 = arr[c][arr.length-1-r];
-                arr[c][arr.length-1-r] = t1;
-                char t3 = arr[arr.length-1-r][arr.length-1-c];
-                arr[arr.length-1-r][arr.length-1-c] = t2;
-                arr[c][r] = t3;
+                char t1 = arr[c][arr[r].length-1-r];
+                arr[c][arr[r].length-1-r] = arr[r][c];
+
+                char t2 = arr[arr.length-1-r][arr[r].length-1-c];
+                arr[arr.length-1-r][arr[r].length-1-c] = t1;
+
+                char t3 = arr[arr.length-1-c][r];
+                arr[arr.length-1-c][r] = t2;
+
+                arr[r][c] = t3;
 
                 showArray(arr);
             }

@@ -29,9 +29,10 @@ public class ArrayStringsTest {
         ArrayStrings obj = new ArrayStrings();
 
         char[][] arr = {
-            {'a','b','c'},
-            {'d','e','f'},
-            {'g','h','i'}
+            {'a','b','c','d'},
+            {'e','f','g','h'},
+            {'i','j','k','l'},
+            {'m','n','o','p'}
         };
         obj.rotateBy90(arr);
         obj.showArray(arr);
