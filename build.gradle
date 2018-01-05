@@ -1,0 +1,27 @@
+buildscript {
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id "org.sonarqube" version "2.5"
+    id "java"
+
+}
+
+
+repositories {
+    mavenCentral()
+
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+
+    testCompile("junit:junit:4.12")
+
+}
