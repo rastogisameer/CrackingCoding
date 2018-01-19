@@ -73,4 +73,46 @@ public class LinkedLists {
 
         }
     }
+    public List<Integer> addList(List<Integer> n1, List<Integer> n2){
+
+        int s1 = n1.size();
+        int s2 = n2.size();
+
+        int a = 0;
+        for(int i = 0; i < n1.size(); i++){
+
+            a += n1.get(i) * Math.pow(10, s1-i-1);
+        }
+        int b = 0;
+        for(int i = 0; i < n2.size(); i++){
+
+            b += n2.get(i) * Math.pow(10, s2-i-1);
+        }
+        System.out.println(a);
+        System.out.println(b);
+
+        int c = a + b;
+
+
+        return null;
+    }
+    public ListNode<String> getLoopNode(ListNode<String> root){
+
+        ListNode<String> n = root;
+        ListNode<String> p = root;
+        ListNode<String> d = root;
+
+        while(n != null){
+
+            d = n;
+            n = n.getNextNode();
+            p = p.getNextNode().getNextNode().getNextNode();
+
+            if(n.equals(p)){
+                break;
+            }
+        }
+        return d;
+    }
 }
+

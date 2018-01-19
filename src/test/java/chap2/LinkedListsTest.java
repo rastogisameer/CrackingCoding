@@ -2,6 +2,8 @@ package chap2;
 
 import org.junit.Test;
 
+import java.util.LinkedList;
+
 public class LinkedListsTest {
 
     private ListNode<Integer> createList(){
@@ -77,5 +79,36 @@ public class LinkedListsTest {
         LinkedLists lists = new LinkedLists();
         lists.deleteMiddle(t4);
         lists.showList(t1);
+    }
+    @Test
+    public void testAddList(){
+
+        LinkedLists l = new LinkedLists();
+
+        LinkedList<Integer> n1 = new LinkedList<Integer>();
+        n1.add(5);n1.add(1);n1.add(3);
+
+        LinkedList<Integer> n2 = new LinkedList<Integer>();
+        n2.add(2);n2.add(9);n2.add(5);
+
+        l.addList(n1,n2);
+    }
+    @Test
+    public void testGetLoopNode(){
+
+        LinkedLists l = new LinkedLists();
+        ListNode<String> a = new ListNode<String>("A");
+        ListNode<String> b = new ListNode<String>("B");
+        ListNode<String> c = new ListNode<String>("C");
+        ListNode<String> d = new ListNode<String>("D");
+        ListNode<String> e = new ListNode<String>("E");
+
+        a.setNextNode(b);
+        b.setNextNode(c);
+        c.setNextNode(d);
+        d.setNextNode(e);
+        e.setNextNode(c);
+
+        System.out.println(l.getLoopNode(a));
     }
 }
