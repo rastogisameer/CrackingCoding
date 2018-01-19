@@ -16,14 +16,17 @@ public class RecursionTest {
 
         Set<Integer> set = new HashSet<Integer>();
         set.add(1);
-        //set.add(2);
+        set.add(2);
+        set.add(3);
+        set.add(4);
 
         List<Set> subs = new ArrayList<Set>();
 
         recur.subsets(set, subs);
 
         for(Set s: subs){
-            s.forEach(System.out::println);
+            s.forEach(i -> System.out.print(i + ", "));
+            System.out.println(" ");
         }
 
     }
