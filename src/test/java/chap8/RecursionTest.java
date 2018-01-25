@@ -28,6 +28,16 @@ public class RecursionTest {
             s.forEach(i -> System.out.print(i + ", "));
             System.out.println(" ");
         }
+    }
+    @Test
+    public void testCents(){
+        Recursion recur = new Recursion();
+        List<List<Integer>> ways = recur.cents(9);
 
+        for(List<Integer> way : ways){
+
+            way.forEach(i -> System.out.print(i + ","));
+            System.out.println(" ");
+        }
     }
 }

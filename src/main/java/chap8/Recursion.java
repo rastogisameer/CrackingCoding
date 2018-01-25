@@ -59,5 +59,34 @@ public class Recursion {
             }
         }
     }
+    public List<List<Integer>> cents(int n){
 
+        List<List<Integer>> ways = new ArrayList<List<Integer>>();
+
+        if(n < 5){
+            List<Integer> w1 = new ArrayList<Integer>();
+            for (int i = 1; i<= n; i++ ){
+                w1.add(1);
+            }
+            ways.add(w1);
+            return ways;
+        }
+
+        if(n >= 5 && n < 10){
+            List<List<Integer>> ways2 = cents(n-1);
+
+            for(List<Integer> way: ways2){
+                way.add(1);
+            }
+
+            List<List<Integer>> ways3 = cents(n-5);
+
+            for(List<Integer> way: ways3){
+                way.add(5);
+            }
+            ways.addAll(ways2);
+            ways.addAll(ways3);
+        }
+        return ways;
+    }
 }
